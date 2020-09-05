@@ -6,12 +6,15 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    currency: 'null',
+    symbols:['btcusdt','bnbbtc','ethbtc'],
+    curSymbol: '',
     stack:[]
   },
   getters:{
+    
   },
   mutations: {
+    setCurSymbol: (state,payload) => {state.curSymbol = payload.newSym}
   },
   actions: {
    

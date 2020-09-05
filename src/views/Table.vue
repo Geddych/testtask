@@ -1,6 +1,6 @@
 <template>
     <div>
-      <h1>Стакан по символу </h1>
+      <h1>Стакан по символу {{symbol.toUpperCase()}} </h1>
       <tableComp />
     </div>
   
@@ -13,6 +13,11 @@ export default {
   name: 'Table',
   components: {
     tableComp
+  },
+  computed: {
+    symbol() {
+      return this.$store.state.curSymbol
+    }
   } 
 }
 </script>
