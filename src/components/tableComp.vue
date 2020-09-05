@@ -23,6 +23,9 @@
 export default {
     name:'tableComp',
     computed: {
+        Asks() {
+            return this.$store.state.asks
+        },
         Total() {
         return 1+5
     },

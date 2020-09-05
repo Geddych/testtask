@@ -1,6 +1,6 @@
 <template>
     <div>
-      <h1>Стакан по символу {{symbol.toUpperCase()}} </h1>
+      <h1>Стакан по символу {{symbol}} </h1>
       <tableComp />
     </div>
   
@@ -13,6 +13,9 @@ export default {
   name: 'Table',
   components: {
     tableComp
+  },
+  beforeMount() {
+    this.$store.dispatch('getStack')
   },
   computed: {
     symbol() {
