@@ -13,6 +13,9 @@ export default {
   name:'app',
   beforeCreate() {
     this.$store.dispatch('socket_sub')
+  },
+  beforeDestroy() {
+    this.$store.disptach('socket_close')
   }
 }
 </script>

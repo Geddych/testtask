@@ -35,6 +35,9 @@ export default new Vuex.Store({
         let jsonMSg = JSON.parse(msg.data)
         commit('setStack',jsonMSg)
       }
+    },
+    socket_close() {
+      this.state.ws.close(1000,'Завершена работа')
     }
    
   },
