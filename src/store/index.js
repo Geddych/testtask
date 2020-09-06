@@ -23,14 +23,14 @@ export default new Vuex.Store({
   },
   actions: {
     async getStack({ commit }) {
-     let responce = await fetch(`https://api.binance.com/api/v3/depth?symbol=${this.state.curSymbol}&limit=10`)
+     let responce = await fetch(`https://api.binance.com/api/v3/depth?symbol=${this.state.curSymbol}`)
      let st = await responce.json()
      commit('setStack',st)
-     console.log(this.state.asks)
-     console.log(this.state.bids)
     }
    
   },
   modules: {
   }
 })
+
+

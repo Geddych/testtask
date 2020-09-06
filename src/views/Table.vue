@@ -21,6 +21,13 @@ export default {
     symbol() {
       return this.$store.state.curSymbol
     }
+
   } 
 }
 </script>
+
+<style lang="scss" scoped>
+div {
+  overflow: hidden;
+}
+</style>
