@@ -43,6 +43,11 @@ export default {
     created() {
         window.addEventListener('resize',this.updWidth)
         window.addEventListener('resize',this.udDes)
+        this.$store.dispatch('socket_change')
+        
+    },
+    beforeMount() {
+        this.$store.dispatch('socket_listen')
     },
     computed: {
         Asks() {
@@ -50,7 +55,7 @@ export default {
         },
         Bids() {
             return this.$store.state.bids
-        }
+        },
     },
     methods: {
         updWidth() {
@@ -70,10 +75,20 @@ export default {
 <style lang="scss" scoped>
 
 .container {
-    overflow: scroll;
+    overflow-y:auto;
+    visibility: hidden;
     width: 100%;
     height: 70vh;
     overflow-x: hidden;
+    transition: visibility 0.2s;
+
+    &:hover, &:focus, .table {
+        visibility: visible;
+    }
+    &:hover {
+        transition: visibility 0s 0.2s;
+    }
+
 }
 .table {
     display: inline-block;
@@ -82,6 +97,7 @@ export default {
     text-align: center;
     border-spacing: 0;
 }
+
 th {
     width: 100%;
     text-align: center;

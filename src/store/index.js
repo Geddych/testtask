@@ -9,7 +9,8 @@ export default new Vuex.Store({
     symbols:['BTCUSDT','BNBBTC','ETHBTC'],
     curSymbol: 'BTCUSDT',
     bids:[],
-    asks:[]
+    asks:[],
+    ws: null
   },
   getters:{
     
@@ -22,10 +23,18 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    async getStack({ commit }) {
-     let responce = await fetch(`https://api.binance.com/api/v3/depth?symbol=${this.state.curSymbol}`)
-     let st = await responce.json()
-     commit('setStack',st)
+    socket_sub() { 
+      this.state.ws = new WebSocket(`wss://stream.binance.com:9443/ws/${this.state.curSymbol.toLowerCase()}@depth20`)
+    },
+    socket_change() {
+      this.state.ws.close(1000,'reopen')
+      this.state.ws = new WebSocket(`wss://stream.binance.com:9443/ws/${this.state.curSymbol.toLowerCase()}@depth20`)
+    },
+    socket_listen({ commit }) {
+      this.state.ws.onmessage = (msg) => {
+        let jsonMSg = JSON.parse(msg.data)
+        commit('setStack',jsonMSg)
+      }
     }
    
   },

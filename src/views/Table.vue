@@ -14,9 +14,6 @@ export default {
   components: {
     tableComp
   },
-  beforeMount() {
-    this.$store.dispatch('getStack')
-  },
   computed: {
     symbol() {
       return this.$store.state.curSymbol

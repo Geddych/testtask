@@ -10,7 +10,10 @@
 
 <script>
 export default {
-  
+  name:'app',
+  beforeCreate() {
+    this.$store.dispatch('socket_sub')
+  }
 }
 </script>
 
